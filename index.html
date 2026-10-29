@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Susanne Greinacher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
           },
           colors: {
-            lavender: {
+            lilac: {
               50: '#faf5ff',
               100: '#f3e8ff',
               200: '#e9d5ff',
@@ -25,25 +25,7 @@
               400: '#c084fc',
               500: '#a855f7',
               600: '#9333ea',
-              700: '#7e22ce',
-              800: '#6b21a8',
-              900: '#581c87',
-              950: '#3b0764',
-            }
-          },
-          animation: {
-            'float-slow': 'float 7s ease-in-out infinite',
-            'float-delayed': 'float 8s ease-in-out 3s infinite',
-            'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-12px) rotate(3deg)' },
-            },
-            pulseSubtle: {
-              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-              '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+              900: '#3b0764',
             }
           }
         }
@@ -52,123 +34,158 @@
   </script>
   <style>
     body {
-      background: radial-gradient(circle at 15% 15%, #fdf4ff 0%, #f5f3ff 45%, #fae8ff 100%);
+      background: radial-gradient(circle at 15% 20%, #f6eafb 0%, #ecd4fa 45%, #dfb8f5 100%);
+      min-height: 100vh;
       color: #3b0764;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
     }
-    .sparkle {
+    /* Organisch schwebende Formen */
+    .blob {
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      animation: morph 12s ease-in-out infinite alternate;
+      filter: blur(80px);
+    }
+    .blob-delayed {
+      border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+      animation: morph 16s ease-in-out 3s infinite alternate;
+      filter: blur(90px);
+    }
+    @keyframes morph {
+      0% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: translate(0px, 0px) rotate(0deg);
+      }
+      50% {
+        border-radius: 65% 35% 45% 55% / 40% 60% 40% 60%;
+        transform: translate(25px, -15px) rotate(8deg);
+      }
+      100% {
+        border-radius: 35% 65% 55% 45% / 55% 40% 60% 45%;
+        transform: translate(-15px, 20px) rotate(-6deg);
+      }
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(216, 180, 254, 0.5);
+      box-shadow: 0 4px 20px -2px rgba(168, 85, 247, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(192, 132, 252, 0.8);
+      box-shadow: 0 8px 30px -4px rgba(168, 85, 247, 0.18);
+      transform: translateY(-2px);
+    }
+    .float-slow {
+      animation: float 6s ease-in-out infinite;
+    }
+    .float-delayed {
+      animation: float 7s ease-in-out 2s infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .ambient-glow {
+      position: fixed;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 180, 254, 0.28) 0%, rgba(244, 114, 182, 0.12) 40%, transparent 70%);
       pointer-events: none;
-      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: opacity 0.3s ease;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-purple-200 selection:text-purple-900 relative">
+<body class="selection:bg-purple-200 selection:text-purple-900 relative overflow-x-hidden">
 
-  <!-- Playful Decorative Floating Elements in Background -->
-  <div class="fixed top-12 left-8 md:left-24 text-purple-300 text-3xl select-none animate-float-slow opacity-60">✨</div>
-  <div class="fixed top-1/4 right-8 md:right-32 text-pink-300 text-2xl select-none animate-float-delayed opacity-70">🫐</div>
-  <div class="fixed bottom-24 left-10 md:left-20 text-purple-300 text-2xl select-none animate-float-delayed opacity-60">💜</div>
-  <div class="fixed bottom-16 right-12 md:right-28 text-pink-300 text-3xl select-none animate-float-slow opacity-60">🌸</div>
+  <!-- Interaktiver Cursor Glow -->
+  <div id="glow" class="ambient-glow opacity-0 md:opacity-100"></div>
 
-  <!-- Soft Ambient Glow Orbs -->
-  <div class="fixed -top-24 -right-24 w-96 h-96 rounded-full bg-purple-300/40 blur-3xl pointer-events-none animate-pulse-subtle"></div>
-  <div class="fixed -bottom-24 -left-24 w-96 h-96 rounded-full bg-pink-300/40 blur-3xl pointer-events-none animate-pulse-subtle"></div>
+  <!-- Organisch weich morphende Hintergrund-Blobs -->
+  <div class="fixed top-[-8%] left-[-6%] w-[580px] h-[580px] bg-purple-400/35 blob pointer-events-none"></div>
+  <div class="fixed bottom-[-10%] right-[-8%] w-[560px] h-[560px] bg-violet-400/30 blob-delayed pointer-events-none"></div>
+  <div class="fixed top-[40%] right-[15%] w-[380px] h-[380px] bg-pink-300/25 blob pointer-events-none"></div>
 
-  <!-- Main Container -->
-  <main class="relative z-10 w-full max-w-2xl mx-auto px-6 py-16 md:py-24 flex-1 flex flex-col justify-center">
+  <!-- Dekorative kleine Emojis am Rand -->
+  <div class="fixed top-12 right-[12%] text-2xl opacity-60 pointer-events-none float-slow hidden sm:block">💜</div>
+  <div class="fixed bottom-24 left-[8%] text-2xl opacity-50 pointer-events-none float-delayed hidden sm:block">✨</div>
+  <div class="fixed top-1/3 left-[5%] text-2xl opacity-40 pointer-events-none float-slow hidden md:block">🌸</div>
+  <div class="fixed bottom-1/3 right-[6%] text-xl opacity-50 pointer-events-none float-delayed hidden md:block">🍓</div>
 
-    <!-- Header Section -->
+  <!-- Haupt-Container -->
+  <main class="relative z-10 w-full max-w-2xl mx-auto px-6 py-16 sm:py-24 min-h-screen flex flex-col justify-center">
+
+    <!-- Header Bereich -->
     <header class="space-y-4">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium bg-white/70 backdrop-blur-md border border-purple-200/80 text-purple-700 shadow-sm">
-        <span class="text-sm">☕</span>
-        <span>Guten Morgen Modus & gute Laune</span>
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-purple-100/80 border border-purple-200/80 text-purple-800 shadow-sm">
+        <span class="text-sm">✨</span>
+        <span>Herzensmensch & Energiebündel</span>
       </div>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-semibold tracking-tight text-purple-950">
-        Susanne <span class="italic font-normal text-purple-600">Greinacher</span>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl tracking-tight leading-tight">
+        <span class="font-serif font-bold text-purple-950 mr-2.5">Susanne</span>
+        <span class="font-serif italic font-normal text-purple-600">Greinacher</span>
       </h1>
 
-      <p class="text-lg sm:text-xl text-purple-800/80 font-normal leading-relaxed">
+      <p class="text-lg sm:text-xl text-purple-900/80 font-light leading-relaxed">
         Mit ganzem Herzen für Menschen da sein, aktiv bleiben und das Schöne im Alltag genießen.
       </p>
     </header>
 
-    <!-- Playful Cards (Grid with Pflege centerpiece) -->
+    <!-- 5 Liebevoll gestaltete Kacheln -->
     <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-      
-      <!-- Card 1: Krankenpflege & Herzensberuf (Prominent / Span 2 on small screens or full focus) -->
-      <div class="sm:col-span-2 group p-5 rounded-3xl bg-white/75 backdrop-blur-md border border-purple-200/90 hover:border-purple-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-3">
-            <span class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-              🩺
-            </span>
-            <div>
-              <span class="text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Herzensberuf</span>
-            </div>
+
+      <!-- Karte: Krankenpflege (Hervorgehoben über volle Breite) -->
+      <div class="sm:col-span-2 p-5 rounded-3xl glass-card transition-all duration-300 shadow-sm border-purple-300/60 bg-white/85">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="w-9 h-9 rounded-2xl bg-purple-100 flex items-center justify-center text-lg shadow-sm">🩺</span>
+          <div>
+            <span class="text-[11px] font-semibold tracking-wider uppercase text-purple-600 font-sans">Herzensberuf</span>
+            <h2 class="text-base font-semibold text-purple-950">Krankenpflegerin mit Herz & Seele</h2>
           </div>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100/70 text-purple-700">01</span>
         </div>
-        <h2 class="text-base font-semibold text-purple-950 mb-1">Krankenpflegerin mit Herz & Seele</h2>
-        <p class="text-xs text-purple-900/75 leading-relaxed">
-          Für ältere, kranke und hilfsbedürftige Menschen da sein – mit fachlicher Fürsorge, einer warmen Hand, echter Zuwendung und einem offenen Ohr im richtigen Moment.
+        <p class="text-sm text-purple-900/80 leading-relaxed font-light mt-2">
+          Mit liebevoller Fürsorge, Geduld und offenem Ohr für alte, kranke und hilfsbedürftige Menschen da – jeden Tag ein echter Anker für andere.
         </p>
       </div>
 
-      <!-- Card 2: Skyr & Berry Bowl -->
-      <div class="group p-5 rounded-3xl bg-white/60 backdrop-blur-md border border-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-        <div class="flex items-center justify-between mb-3">
-          <span class="w-10 h-10 rounded-2xl bg-amber-100/80 text-amber-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-            🥣
-          </span>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">02</span>
-        </div>
+      <!-- Karte 1: Frühstück -->
+      <div class="p-5 rounded-3xl glass-card transition-all duration-300 shadow-sm">
+        <div class="w-9 h-9 rounded-2xl bg-purple-100 flex items-center justify-center text-lg mb-3 shadow-sm">🥣</div>
         <h2 class="text-base font-semibold text-purple-950 mb-1">Frühstücks-Liebe</h2>
-        <p class="text-xs text-purple-900/70 leading-relaxed">
-          Guter Kaffee, frischer Skyr und eine bunte Bowl voller Früchte & Beeren. So startet der Tag perfekt – gesund, bunt und ohne Eile.
+        <p class="text-xs sm:text-sm text-purple-900/80 leading-relaxed font-light">
+          Der perfekte Morgen startet mit einer frischen Bowl: cremiger Skyr, bunte Beeren, Früchte und ein leckerer Latte Macchiato in aller Ruhe.
         </p>
       </div>
 
-      <!-- Card 3: Family -->
-      <div class="group p-5 rounded-3xl bg-white/60 backdrop-blur-md border border-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-        <div class="flex items-center justify-between mb-3">
-          <span class="w-10 h-10 rounded-2xl bg-pink-100/80 text-pink-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-            💜
-          </span>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">03</span>
-        </div>
-        <h2 class="text-base font-semibold text-purple-950 mb-1">Herzensmensch & Familie</h2>
-        <p class="text-xs text-purple-900/70 leading-relaxed">
-          Der Mittelpunkt von allem. Volles Haus, lautes Lachen und die Menschen um sich haben, die am meisten zählen.
-        </p>
-      </div>
+      <!-- Karte 2: Familie, Harmonie & Ordnung -->
+    <div class="p-5 rounded-3xl glass-card transition-all duration-300 shadow-sm">
+      <div class="w-9 h-9 rounded-2xl bg-pink-100 flex items-center justify-center text-lg mb-3 shadow-sm">💜</div>
+      <h2 class="text-base font-semibold text-purple-950 mb-1">Familie & Wohlfühl-Zuhause</h2>
+      <p class="text-xs sm:text-sm text-purple-900/80 leading-relaxed font-light">
+        Gemeinsame Zeit, lautes Lachen und ein gemütliches Daheim. Ich liebe Ordnung, frischen Duft und ein aufgeräumtes Nest, in dem sich alle geborgen fühlen.
+      </p>
+    </div>
 
-      <!-- Card 4: Sport & Bewegung -->
-      <div class="group p-5 rounded-3xl bg-white/60 backdrop-blur-md border border-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-        <div class="flex items-center justify-between mb-3">
-          <span class="w-10 h-10 rounded-2xl bg-purple-100/80 text-purple-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-            🏃‍♀️
-          </span>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">04</span>
-        </div>
-        <h2 class="text-base font-semibold text-purple-950 mb-1">Sport & Auspowern</h2>
-        <p class="text-xs text-purple-900/70 leading-relaxed">
-          Kopf frei bekommen, Energie tanken und aktiv sein. Die beste Vorbereitung für den nächsten Snack.
-        </p>
-      </div>
+    <!-- Karte 3: Sport & Musik im Ohr -->
+    <div class="p-5 rounded-3xl glass-card transition-all duration-300 shadow-sm">
+      <div class="w-9 h-9 rounded-2xl bg-purple-100 flex items-center justify-center text-lg mb-3 shadow-sm">🎵</div>
+      <h2 class="text-base font-semibold text-purple-950 mb-1">Sport, Beat & Auspowern</h2>
+      <p class="text-xs sm:text-sm text-purple-900/80 leading-relaxed font-light">
+        Kopfhörer auf, Lieblingsmusik an und einfach loslegen. Mit dem richtigen Rhythmus im Ohr powert sich der Kopf frei und die Energie kommt von ganz allein.
+      </p>
+    </div>
 
-      <!-- Card 5: Wellness & Entspannung -->
-      <div class="group p-5 rounded-3xl bg-white/60 backdrop-blur-md border border-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-        <div class="flex items-center justify-between mb-3">
-          <span class="w-10 h-10 rounded-2xl bg-rose-100/80 text-rose-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-            🛁
-          </span>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">05</span>
-        </div>
+    <!-- Karte 4: Wellness -->
+      <div class="p-5 rounded-3xl glass-card transition-all duration-300 shadow-sm">
+        <div class="w-9 h-9 rounded-2xl bg-pink-100 flex items-center justify-center text-lg mb-3 shadow-sm">🧖‍♀️</div>
         <h2 class="text-base font-semibold text-purple-950 mb-1">Wellness & Me-Time</h2>
-        <p class="text-xs text-purple-900/70 leading-relaxed">
-          Sauna, Ruhe, Gemütlichkeit und absolute Wohlfühl-Momente. Die Seele baumeln lassen in Perfektion.
+        <p class="text-xs sm:text-sm text-purple-900/80 leading-relaxed font-light">
+          Sauna, wohlige Wärme und die Seele baumeln lassen. Einfach mal durchatmen, abschalten und neue Energie schöpfen.
         </p>
       </div>
 
@@ -176,5 +193,13 @@
 
   </main>
 
+  <script>
+    // Sanfter lila-pinker Glow, der dem Cursor folgt
+    const glow = document.getElementById('glow');
+    window.addEventListener('pointermove', (e) => {
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+    });
+  </script>
 </body>
 </html>
